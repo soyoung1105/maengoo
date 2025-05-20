@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# 커스텀한 사용자 모델을 사용하기 위해 AUTH_USER_MODEL 설정
+AUTH_USER_MODEL = "users.User"
 
 # Application definition
 
