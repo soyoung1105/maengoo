@@ -14,7 +14,7 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('home')  # 로그인 후 이동할 경로
+                return redirect('users:test')  # 로그인 후 이동할 경로
             else:
                 form.add_error(None, '아이디 또는 비밀번호가 올바르지 않습니다.')
     else:
