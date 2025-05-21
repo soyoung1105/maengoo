@@ -16,8 +16,10 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include  # include 추가!
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("users/", include("users.urls")),  # users 앱 연결!
 ]
+
