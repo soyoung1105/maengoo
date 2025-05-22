@@ -1,7 +1,7 @@
 <!-- login.html 예시 -->
-<h2>로그인</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">로그인</button>
+<h2>로그인</h2> <!--h2 정도로 로그인 글자 표시--> 
+<form method="post"> <!--post 메소드 사용-->
+  {% csrf_token %} <!--보안토큰-->
+  {{ form.as_p }} <!--폼을 <p> 태그로 감싸서 자동 출력-->
+  <button type="submit">로그인</button> <!--로그인 버튼 생성-->
 </form>

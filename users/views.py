@@ -1,22 +1,22 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from .forms import LoginForm
+from django.shortcuts import render, redirect #화면 출력, 페이지 이동
+from django.contrib.auth import authenticate, login # 로그인 기능
+from .forms import LoginForm #로그인 창 불러오기
 
 def login_view(request):
-    if request.method == 'POST':
+    if request.method == 'POST': #폼 제출시 
         form = LoginForm(request.POST)
-        if form.is_valid():
+        if form.is_valid(): #유효성 검사 통과시
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
+            user = authenticate(request, username=username, password=password) #사용자 인증
             if user is not None:
                 login(request, user)
-                return redirect('users:test')  # 로그인 후 이동할 경로
+                return redirect('users:test')  # 로그인 후 이동할 경로 (로그인 성공시 테스트페이지로)
             else:
-                form.add_error(None, '아이디 또는 비밀번호가 올바르지 않습니다.')
+                form.add_error(None, '아이디 또는 비밀번호가 올바르지 않습니다.') #로그인 실패시 에러 표시
     else:
-        form = LoginForm()
-    return render(request, 'users/login.html', {'form': form})
+        form = LoginForm() #겟 요청시 속이 빈 폼 생성..
+    return render(request, 'users/login.html', {'form': form}) #로그인 페이지 재실행
