@@ -10,3 +10,15 @@ urlpatterns = [
     path("test/", test, name="test"),  #브라우저 주소창에 /유저/테스트/ 로 들어오면 test.html 화면을 보여줌
     path('login/', login_view, name='login'), #주소창에 /users/login  치면 로그인 창이 나옴
 ]
+
+from django.urls import path #유알엘 경로 설정
+from .views import login_view, signup_view, logout_view, test #뷰에서 로그인, 회원가입, 로그아웃 함수 불러옴
+
+app_name = "users"
+
+urlpatterns = [
+    path("login/", login_view, name="login"), #/유저스/로그인/ 사용자 로그인 페이지
+    path("signup/", signup_view, name="signup"), #유저스/사인업/ 회원가입 페이지
+    path("logout/", logout_view, name="logout"), #유저스/로그아웃/ 로그아웃 페이지 
+    path("test/", test, name="test"),  
+]

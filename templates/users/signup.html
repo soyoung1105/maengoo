@@ -1,0 +1,6 @@
+<h2>회원가입</h2>
+<form method="post"> <!--포스트 메소드 사용-->
+  {% csrf_token %} <!--보안 토큰-->
+  {{ form.as_p }}
+  <button type="submit">가입하기</button><!--가입하기 버튼-->
+</form>

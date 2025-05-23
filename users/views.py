@@ -20,3 +20,28 @@ def login_view(request):
     else:
         form = LoginForm() #겟 요청시 속이 빈 폼 생성..
     return render(request, 'users/login.html', {'form': form}) #로그인 페이지 재실행
+
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, logout
+from .forms import SignupForm, LoginForm  # 기존 로그인 폼도 함께 import
+
+def signup_view(request):
+    if request.method == 'POST':
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])  # 비밀번호 암호화
+            user.save()
+            return redirect('users:login')  # 가입 후 로그인 페이지로 이동
+    else:
+        form = SignupForm()
+    return render(request, 'users/signup.html', {'form': form})
+
+def logout_view(request):
+    logout(request)
+    return render(request, 'users/logout.html')  # 로그아웃 후 안내 페이지 (또는 redirect도 가능)
+
+from django.shortcuts import render
+
+def test(request):
+    return render(request, 'test.html')  # 또는 간단한 텍스트 리턴도 가능
