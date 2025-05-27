@@ -2,8 +2,8 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.shortcuts import render, redirect #화면 출력, 페이지 이동
-from django.contrib.auth import authenticate, login # 로그인 기능
-from .forms import LoginForm #로그인 창 불러오기
+from django.contrib.auth import authenticate, login , logout # 로그인 기능
+from .forms import LoginForm , SignupForm #로그인 창 불러오기
 
 def login_view(request):
     if request.method == 'POST': #폼 제출시 
@@ -21,9 +21,8 @@ def login_view(request):
         form = LoginForm() #겟 요청시 속이 빈 폼 생성..
     return render(request, 'users/login.html', {'form': form}) #로그인 페이지 재실행
 
-from django.shortcuts import render, redirect
+
 from django.contrib.auth import login, logout
-from .forms import SignupForm, LoginForm  # 기존 로그인 폼도 함께 import
 
 def signup_view(request):
     if request.method == 'POST':
