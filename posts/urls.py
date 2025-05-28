@@ -4,6 +4,7 @@
 from django.urls import path
 from . import views
 
+
 urlpatterns = [
     path('', views.post_list, name='post_list'),  #게시글목록
     path('post/<int:pk>/', views.post_detail, name='post_detail'),  #게시글상세

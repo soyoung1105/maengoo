@@ -16,10 +16,11 @@ Including another URLconf
 """
 
 from django.contrib import admin 
-from django.urls import path, include  # include 추가!
+from django.urls import path, include  #include 추가
+
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("users/", include("users.urls")),  # users 앱 연결!
+    path("admin/", admin.site.urls), #관리자페이지
+    path("users/", include("users.urls")),  #posts 앱의 url.py로 연결
 ]
 
