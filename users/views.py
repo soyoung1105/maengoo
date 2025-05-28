@@ -27,11 +27,10 @@ from django.contrib.auth import login, logout
 def signup_view(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
+        print(form.errors)  # 에러 출력
         if form.is_valid():
-            user = form.save(commit=False)
-            user.set_password(form.cleaned_data['password'])  # 비밀번호 암호화
-            user.save()
-            return redirect('users:login')  # 가입 후 로그인 페이지로 이동
+            form.save()
+            return redirect('users:login')
     else:
         form = SignupForm()
     return render(request, 'users/signup.html', {'form': form})
