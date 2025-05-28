@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">{{ post.title }}</h1>
+            <div class="mb-3">
+                <small class="text-muted">
+                    작성자: {{ post.author }} | 
+                    조회수: {{ post.views }} | 
+                    작성일: {{ post.created_at|date:"Y-m-d H:i" }} | 
+                    수정일: {{ post.updated_at|date:"Y-m-d H:i" }}
+                </small>
+            </div>
+            <hr>
+            <p class="card-text">{{ post.content|linebreaks }}</p>
+            
+            <div class="mt-4">
+                <a href="{% url 'post_edit' pk=post.pk %}" class="btn btn-warning">수정</a>
+                <a href="{% url 'post_delete' pk=post.pk %}" class="btn btn-danger">삭제</a>
+                <a href="{% url 'post_list' %}" class="btn btn-secondary">목록으로</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
