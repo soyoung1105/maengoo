@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-#게시글에는 어떤 목록이 있을까?????제목 글쓴이 조회수 
+#게시글에는 어떤 목록이 있을까?????제목 글쓴이 조회수
 from django.db import models
 from django.utils import timezone
 

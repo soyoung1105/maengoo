@@ -14,18 +14,18 @@
     <!-- 네비게이션 바 -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'post_list' %}">블로그</a>
+            <a class="navbar-brand" href="{% url 'posts:post_list' %}">블로그</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'post_list' %}">게시글 목록</a>
+                        <a class="nav-link" href="{% url 'posts:post_list' %}">게시글 목록</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'post_create' %}">새 글 작성</a>
+                        <a class="nav-link" href="{% url 'posts:post_create' %}">새 글 작성</a>
                     </li>
                     {% endif %}
                 </ul>

@@ -23,7 +23,7 @@ def post_create(request):
         form = PostForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('post_list')  #게시글 작성 후 목록으로 돌아가기
+            return redirect('posts:post_list')  #게시글 작성 후 목록으로 돌아가기
     else:
         form = PostForm()
     return render(request, 'posts/post_form.html', {'form': form})
@@ -35,7 +35,7 @@ def post_edit(request, pk):
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
             form.save()
-            return redirect('post_detail', pk=pk)
+            return redirect('posts:post_detail', pk=pk)
     else:
         form = PostForm(instance=post)
     return render(request, 'posts/post_form.html', {'form': form})
@@ -45,5 +45,5 @@ def post_delete(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         post.delete()
-        return redirect('post_list')
+        return redirect('posts:post_list')
     return render(request, 'posts/post_confirm_delete.html', {'post': post})
