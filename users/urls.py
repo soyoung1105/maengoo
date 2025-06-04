@@ -14,3 +14,11 @@ urlpatterns = [
     path("logout/", logout_view, name="logout"), #유저스/로그아웃/ 로그아웃 페이지 
     path("test/", test, name="test"),  
 ]
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.post_list, name='post_list'),
+    path('like/<int:post_id>/', views.toggle_like, name='toggle_like'),
+]

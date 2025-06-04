@@ -43,3 +43,23 @@ from django.shortcuts import render
 
 def test(request):
     return render(request, 'test.html')  # 또는 간단한 텍스트 리턴도 가능
+
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Post
+from django.contrib.auth.decorators import login_required
+
+def post_list(request):
+    posts = Post.objects.all().order_by('-created_at')
+    return render(request, 'posts/post_list.html', {'posts': posts})
+
+@login_required
+def toggle_like(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    user = request.user
+
+    if user in post.liked_users.all():
+        post.liked_users.remove(user)
+    else:
+        post.liked_users.add(user)
+
+    return redirect('post_list')  # 또는 redirect(request.META.get('HTTP_REFERER'))

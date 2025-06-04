@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 
+
 # 사용자 모델을 정의.
 # Django의 AbstractBaseUser와 PermissionsMixin을 상속.
 # AbstractBaseUser는 기본적인 사용자 모델을 제공하고, PermissionsMixin은 권한 관련 기능을 추가.
@@ -52,3 +53,21 @@ class User(AbstractBaseUser, PermissionsMixin):
     # 사용자 모델의 문자열 표현
     def __str__(self):
         return self.username
+    
+
+   
+  
+
+class Post(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    # 좋아요 ManyToManyField 추가
+    liked_users = models.ManyToManyField(User, related_name='liked_posts', blank=True)
+
+    def total_likes(self):
+        return self.liked_users.count()
+
+    def __str__(self):
+        return self.title

@@ -30,3 +30,21 @@
     </div>
 </div>
 {% endblock %} 
+
+{% for post in posts %}
+    <div>
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.content }}</p>
+
+        <form action="{% url 'toggle_like' post.id %}" method="post">
+            {% csrf_token %}
+            {% if user in post.liked_users.all %}
+                <button type="submit">💔 좋아요 취소</button>
+            {% else %}
+                <button type="submit">❤️ 좋아요</button>
+            {% endif %}
+            <span>총 {{ post.total_likes }}개</span>
+        </form>
+    </div>
+    <hr>
+{% endfor %}
